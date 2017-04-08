@@ -23,6 +23,7 @@
 
 
 + (NSString *)signString: (NSString *)string WithKeyRef: (SecKeyRef)key;
++ (NSString *)signString: (NSString *)string ;
 + (NSData *)signData: (NSData *)data WithKeyRef: (SecKeyRef)key;
 
 + (BOOL)verifySignature: (NSString *)signature WithKeyRef: (SecKeyRef)key WithSourceText: (NSString *)source;
@@ -32,8 +33,6 @@
 
 + (NSString *)decryptString: (NSString *)string WithKeyRef: (SecKeyRef)key;
 + (NSData *)decryptData: (NSData *)data WithKeyRef: (SecKeyRef)key;
-
-+ (NSString *)signString: (NSString *)string ;
 
 + (NSData *)addPublicKeyHeaderWithData: (NSData *)publicKeyBits;
 + (NSData *)stripPublicKeyHeader:(NSData *)keyData;
