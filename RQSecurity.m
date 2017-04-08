@@ -1,17 +1,17 @@
 //
-//  CFPSecurity.m
-//  CFPSDK
+//  RQSecurity.m
+//  RQSDK
 //
 //  Created by 阮琦 on 2016/12/21.
 //  Copyright © 2016年 UMS. All rights reserved.
 //
 
-#import "CFPSecurity.h"
-#import "CFPSecKeyWrapper.h"
+#import "RQSecurity.h"
+#import "RQSecKeyWrapper.h"
 
-@implementation CFPSecurity
+@implementation RQSecurity
 + (void)generateRSAKeyPairsAndSaveInKeyChain {
-    [[CFPSecKeyWrapper shared] generateKeyPair:2048];
+    [[RQSecKeyWrapper shared] generateKeyPair:2048];
 }
 
 
@@ -19,11 +19,11 @@
     return [[self getPublicKeyDataInKeyChain] base64EncodedStringWithOptions:0];
 }
 + (NSData *)getPublicKeyDataInKeyChain {
-    NSData *headlessData = [[CFPSecKeyWrapper shared] getPublicKeyBits];
+    NSData *headlessData = [[RQSecKeyWrapper shared] getPublicKeyBits];
     return [self addPublicKeyHeaderWithData:headlessData];
 }
 + (SecKeyRef)getPublicKeyRefInKeyChain {
-    return [[CFPSecKeyWrapper shared] getPublicKeyRef];
+    return [[RQSecKeyWrapper shared] getPublicKeyRef];
 }
 + (SecKeyRef)getPublicKeyRefFromDERData: (NSData *)data {
     //a tag to read/write keychain storage
@@ -79,7 +79,7 @@
 //
 //}
 + (SecKeyRef)getPrivateKeyRefInKeyChain {
-    return [[CFPSecKeyWrapper shared] getPrivateKeyRef];
+    return [[RQSecKeyWrapper shared] getPrivateKeyRef];
 }
 
 + (NSString *)signString: (NSString *)string WithKeyRef: (SecKeyRef)key {
@@ -122,7 +122,7 @@
 + (BOOL)verifySignature: (NSString *)signature WithKeyRef: (SecKeyRef)key WithSourceText: (NSString *)source {
     NSData *sigData = [[NSData alloc]initWithBase64EncodedString:signature options:0];
     NSData *originData = [source dataUsingEncoding:NSUTF8StringEncoding];
-    return [[CFPSecKeyWrapper shared] verifySignature: originData secKeyRef:key signature:sigData];
+    return [[RQSecKeyWrapper shared] verifySignature: originData secKeyRef:key signature:sigData];
 }
 
 + (NSString *)encryptString: (NSString *)string WithKeyRef: (SecKeyRef)key {

@@ -26,14 +26,14 @@
 #define kPrivateKeyTag			"com.ums.privatekey"
 #define kSymmetricKeyTag		"com.ums.symmetrickey"
 
-@interface CFPSecKeyWrapper : NSObject
+@interface RQSecKeyWrapper : NSObject
 
 @property (nonatomic, retain) NSData * publicTag;
 @property (nonatomic, retain) NSData * privateTag;
 @property (nonatomic, retain) NSData * symmetricTag;
 @property (nonatomic, assign) CFDataRef * symmetricKeyRef;
 
-+ (CFPSecKeyWrapper *)shared;
++ (RQSecKeyWrapper *)shared;
 - (void)generateKeyPair:(NSUInteger)keySize;
 - (void)deleteAsymmetricKeys;
 - (void)removePeerPublicKey:(NSString *)peerName;

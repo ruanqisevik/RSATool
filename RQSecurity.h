@@ -1,6 +1,6 @@
 //
-//  CFPSecurity.h
-//  CFPSDK
+//  RQSecurity.h
+//  RQSDK
 //
 //  Created by 阮琦 on 2016/12/21.
 //  Copyright © 2016年 UMS. All rights reserved.
@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface CFPSecurity : NSObject
+@interface RQSecurity : NSObject
 + (void)generateRSAKeyPairsAndSaveInKeyChain;
 
 + (NSString *)getPublicKeyStringInKeyChain;

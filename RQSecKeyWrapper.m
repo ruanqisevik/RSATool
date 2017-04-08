@@ -1,7 +1,7 @@
-#import "CFPSecKeyWrapper.h"
+#import "RQSecKeyWrapper.h"
 #import <Security/Security.h>
 
-@implementation CFPSecKeyWrapper {
+@implementation RQSecKeyWrapper {
     CCOptions typeOfSymmetricOpts;
     SecKeyRef publicKeyRef;
     SecKeyRef privateKeyRef;
@@ -18,11 +18,11 @@ static const uint8_t publicKeyIdentifier[] = kPublicKeyTag;
 static const uint8_t privateKeyIdentifier[] = kPrivateKeyTag;
 static const uint8_t symmetricKeyIdentifier[] = kSymmetricKeyTag;
 
-+ (CFPSecKeyWrapper *)shared {
-    static CFPSecKeyWrapper *sharedInstance = nil;
++ (RQSecKeyWrapper *)shared {
+    static RQSecKeyWrapper *sharedInstance = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        sharedInstance = [[CFPSecKeyWrapper alloc] init];
+        sharedInstance = [[RQSecKeyWrapper alloc] init];
         
         sharedInstance.privateTag = [[NSData alloc] initWithBytes:privateKeyIdentifier length:sizeof(privateKeyIdentifier)];
         sharedInstance.publicTag = [[NSData alloc] initWithBytes:publicKeyIdentifier length:sizeof(publicKeyIdentifier)];
